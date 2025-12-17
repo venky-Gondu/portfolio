@@ -1,0 +1,18 @@
+# Deployment files
+test_database.json
+*.pyc
+__pycache__/
+.env
+
+# Node modules
+node_modules/
+.next/
+out/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

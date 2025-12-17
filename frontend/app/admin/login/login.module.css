@@ -1,0 +1,113 @@
+.loginPage {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-dark);
+}
+
+.background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.gradient1,
+.gradient2 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.3;
+}
+
+.gradient1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, #1e40af, transparent);
+    top: -200px;
+    right: -200px;
+}
+
+.gradient2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #06b6d4, transparent);
+    bottom: -150px;
+    left: -150px;
+}
+
+.loginContainer {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 450px;
+    padding: 2rem;
+}
+
+.loginCard {
+    background: var(--bg-card);
+    padding: 3rem;
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+    font-size: 2.5rem;
+    text-align: center;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.formGroup label {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.error {
+    padding: 1rem;
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid var(--error);
+    border-radius: var(--radius-md);
+    color: var(--error);
+    text-align: center;
+}
+
+.backBtn {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 0.75rem;
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.backBtn:hover {
+    color: var(--accent-light);
+}
