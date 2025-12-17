@@ -1,23 +1,6 @@
 version: '3.8'
 
 services:
-  # MongoDB Database
-  mongodb:
-    image: mongo:7.0-jammy
-    container_name: portfolio-mongodb
-    restart: unless-stopped
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: venkatesh_admin
-      MONGO_INITDB_ROOT_PASSWORD: VenkyPortfolio@2025!Secure
-      MONGO_INITDB_DATABASE: portfolio_db
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodb_data:/data/db
-    networks:
-      - portfolio-network
-    command: mongod --quiet --logpath /dev/null
-
   # Flask Backend
   backend:
     build:
@@ -26,17 +9,15 @@ services:
     container_name: portfolio-backend
     restart: unless-stopped
     environment:
-      - MONGODB_URI=mongodb://venkatesh_admin:VenkyPortfolio@2025!Secure@mongodb:27017/portfolio_db?authSource=admin
+      - MONGODB_URI=${MONGODB_URI}
       - DATABASE_NAME=portfolio_db
       - USE_TEST_DB=false
-      - JWT_SECRET_KEY=VenkyJWT2025SecureRandomKey!Portfolio#Prod
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
       - FLASK_ENV=production
       - PORT=5000
       - FRONTEND_URL=http://localhost:3000
     ports:
       - "5000:5000"
-    depends_on:
-      - mongodb
     networks:
       - portfolio-network
 
@@ -60,7 +41,3 @@ services:
 networks:
   portfolio-network:
     driver: bridge
-
-volumes:
-  mongodb_data:
-    driver: local
