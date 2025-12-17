@@ -1,0 +1,102 @@
+.skillsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.category {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.category:hover {
+    border-color: rgba(6, 182, 212, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.categoryTitle {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent);
+    text-align: left;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid rgba(6, 182, 212, 0.2);
+}
+
+.skillsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: flex-start;
+}
+
+.skillCard {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    background: var(--bg-darker);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.skillCard:hover {
+    transform: translateY(-3px);
+    background: rgba(6, 182, 212, 0.1);
+    border-color: rgba(6, 182, 212, 0.3);
+    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
+}
+
+.skillIcon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: white;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.skillCard:hover .skillIcon {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.skillName {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .skillsList {
+        justify-content: center;
+    }
+
+    .categoryTitle {
+        text-align: center;
+    }
+
+    .skillCard {
+        padding: 0.6rem 1rem;
+    }
+
+    .skillIcon {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .skillName {
+        font-size: 0.9rem;
+    }
+}

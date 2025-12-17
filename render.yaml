@@ -1,0 +1,36 @@
+services:
+  # Backend Service
+  - type: web
+    name: portfolio-backend
+    env: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: DATABASE_NAME
+        value: portfolio_db
+      - key: USE_TEST_DB
+        value: false
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: FLASK_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: FRONTEND_URL
+        value: https://portfolio-frontend.onrender.com
+
+  # Frontend Service
+  - type: web
+    name: portfolio-frontend
+    env: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    plan: free
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://portfolio-backend.onrender.com
+      - key: NODE_ENV
+        value: production
