@@ -23,17 +23,17 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# Initialize Flask app with static folder for Next.js
-app = Flask(__name__, 
-            static_folder='frontend/.next/static',
-            static_url_path='/_next/static')
+# Initialize Flask app (no static folder needed for API-only deployment)
+app = Flask(__name__)
 
-# CORS configuration - simplified for same-origin deployment
+# CORS configuration - allow requests from Vercel frontend
+frontend_url = os.getenv('FRONTEND_URL', 'http://localhost:3000')
 CORS(app, resources={
     r"/api/*": {
-        "origins": "*",  # Allow all origins since frontend is served from same domain
+        "origins": [frontend_url, "http://localhost:3000", "https://*.vercel.app"],
         "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"]
+        "allow_headers": ["Content-Type", "Authorization"],
+        "supports_credentials": True
     }
 })
 
@@ -42,52 +42,20 @@ app.register_blueprint(contact_bp)
 app.register_blueprint(admin_bp)
 app.register_blueprint(visitor_bp)
 
-# Serve Next.js frontend
+# API root endpoint
 @app.route('/')
-@app.route('/<path:path>')
-def serve_frontend(path=''):
-    """Serve Next.js static export for all non-API routes"""
-    # Check if it's an API route or health check
-    if path.startswith('api/') or path == 'health':
-        return jsonify({
-            'success': False,
-            'error': 'Endpoint not found'
-        }), 404
-    
-    # Serve static files from public directory (Next.js export output)
-    public_path = os.path.join(os.path.dirname(__file__), 'public')
-    
-    # If no path, serve index.html
-    if not path:
-        index_file = os.path.join(public_path, 'index.html')
-        if os.path.exists(index_file):
-            return send_file(index_file)
-    
-    # Try to serve the requested file
-    file_path = os.path.join(public_path, path)
-    if os.path.exists(file_path):
-        if os.path.isfile(file_path):
-            return send_file(file_path)
-    
-    # For Next.js routes, try to serve the HTML file
-    html_path = os.path.join(public_path, path + '.html')
-    if os.path.exists(html_path):
-        return send_file(html_path)
-    
-    # Try path/index.html for directory routes
-    index_path = os.path.join(public_path, path, 'index.html')
-    if os.path.exists(index_path):
-        return send_file(index_path)
-    
-    # Fallback: return API info if frontend not built
+def api_info():
+    """API information endpoint"""
     return jsonify({
-        'message': 'Portfolio Application',
-        'note': 'Frontend not found. Build Next.js first.',
-        'api_endpoints': {
+        'message': 'Portfolio API',
+        'version': '1.0',
+        'endpoints': {
             'health': '/health',
             'contact': '/api/contact',
             'admin_login': '/api/admin/login',
-            'visitor_track': '/api/visitor/track'
+            'admin_contacts': '/api/admin/contacts',
+            'visitor_track': '/api/visitor/track',
+            'visitor_stats': '/api/visitor/stats'
         }
     })
 
