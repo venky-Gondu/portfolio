@@ -6,14 +6,20 @@ FROM node:18-alpine AS frontend-builder
 
 WORKDIR /frontend
 
+# Set build-time environment variable for Next.js
+ARG NEXT_PUBLIC_API_URL=/api
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+
 # Copy frontend package files
 COPY frontend/package*.json ./
-RUN npm ci --only=production
+
+# Install ALL dependencies (including devDependencies needed for build)
+RUN npm ci
 
 # Copy frontend source
 COPY frontend/ ./
 
-# Build Next.js for production (static export)
+# Build Next.js for production
 RUN npm run build
 
 # Stage 2: Python Backend with Frontend
