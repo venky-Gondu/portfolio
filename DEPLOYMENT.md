@@ -123,12 +123,19 @@ Should return:
 
 ### Step 2: Configure Project
 
-Vercel should auto-detect Next.js. Verify:
+Vercel should auto-detect Next.js. **IMPORTANT**: Configure these settings:
 
+> [!IMPORTANT]
+> **Root Directory Setting**
+> 
+> Your Next.js app is in the `frontend/` subdirectory. You MUST set:
+> - **Root Directory**: `frontend` ← Click "Edit" and select this!
+
+Other settings (auto-detected):
 - **Framework Preset**: `Next.js`
-- **Root Directory**: `./` (leave as root)
-- **Build Command**: Auto-detected
-- **Output Directory**: Auto-detected
+- **Build Command**: `npm run build`
+- **Output Directory**: `.next`
+- **Install Command**: `npm install`
 
 ### Step 3: Set Environment Variables
 
