@@ -40,8 +40,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY backend/app.py ./
 COPY backend/middleware/ ./middleware/
 COPY backend/routes/ ./routes/
-COPY backend/create_test_admin.py ./
-COPY backend/create_venky_admin.py ./
 
 # Copy database module
 COPY database/ ./database/
