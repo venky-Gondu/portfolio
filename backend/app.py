@@ -11,11 +11,13 @@ try:
     from backend.routes.contact import contact_bp
     from backend.routes.admin import admin_bp
     from backend.routes.visitor import visitor_bp
+    from backend.routes.setup import setup_bp
 except ModuleNotFoundError:
     # Running in Docker where files are in /app directly
     from routes.contact import contact_bp
     from routes.admin import admin_bp
     from routes.visitor import visitor_bp
+    from routes.setup import setup_bp
 
 from database.connection import db_connection
 from dotenv import load_dotenv
@@ -41,6 +43,7 @@ CORS(app, resources={
 app.register_blueprint(contact_bp)
 app.register_blueprint(admin_bp)
 app.register_blueprint(visitor_bp)
+app.register_blueprint(setup_bp)  # One-time setup route
 
 # API root endpoint
 @app.route('/')
