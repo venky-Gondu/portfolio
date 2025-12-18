@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from database.models.admin import Admin
 from database.models.contact import Contact
-from backend.middleware.auth import token_required, generate_token
+from middleware.auth import token_required, generate_token
 
 admin_bp = Blueprint('admin', __name__)
 
