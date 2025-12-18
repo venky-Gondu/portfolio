@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory, send_file
 from flask_cors import CORS
 import sys
 import os
@@ -16,17 +16,15 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# Initialize Flask app
-app = Flask(__name__)
+# Initialize Flask app with static folder for Next.js
+app = Flask(__name__, 
+            static_folder='frontend/.next/static',
+            static_url_path='/_next/static')
 
-# CORS configuration - allow Next.js frontend
+# CORS configuration - simplified for same-origin deployment
 CORS(app, resources={
     r"/api/*": {
-        "origins": [
-            "http://localhost:3000",
-            "http://127.0.0.1:3000",
-            os.getenv('FRONTEND_URL', 'http://localhost:3000')
-        ],
+        "origins": "*",  # Allow all origins since frontend is served from same domain
         "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization"]
     }
@@ -37,13 +35,36 @@ app.register_blueprint(contact_bp)
 app.register_blueprint(admin_bp)
 app.register_blueprint(visitor_bp)
 
-# Root endpoint
+# Serve Next.js frontend
 @app.route('/')
-def index():
+@app.route('/<path:path>')
+def serve_frontend(path=''):
+    """Serve Next.js frontend for all non-API routes"""
+    # Check if it's an API route
+    if path.startswith('api/'):
+        return jsonify({
+            'success': False,
+            'error': 'API endpoint not found'
+        }), 404
+    
+    # Serve static files
+    frontend_path = os.path.join(os.path.dirname(__file__), 'frontend')
+    
+    # Try to serve the requested file
+    if path and os.path.exists(os.path.join(frontend_path, 'public', path)):
+        return send_from_directory(os.path.join(frontend_path, 'public'), path)
+    
+    # Default to index.html for client-side routing
+    index_path = os.path.join(frontend_path, 'public', 'index.html')
+    if os.path.exists(index_path):
+        return send_file(index_path)
+    
+    # Fallback: return a simple message if frontend not built
     return jsonify({
-        'message': 'Portfolio Backend API',
-        'version': '1.0.0',
-        'endpoints': {
+        'message': 'Portfolio Application',
+        'note': 'Frontend not found. Build Next.js first.',
+        'api_endpoints': {
+            'health': '/health',
             'contact': '/api/contact',
             'admin_login': '/api/admin/login',
             'visitor_track': '/api/visitor/track'
