@@ -1,28 +1,6 @@
-# Unified Dockerfile for Single Deployment
-# Builds Next.js frontend and serves it with Flask backend
+# Backend-Only Dockerfile for Render
+# This serves ONLY the Flask API (no frontend)
 
-# Stage 1: Build Next.js Frontend
-FROM node:18-alpine AS frontend-builder
-
-WORKDIR /frontend
-
-# Set build-time environment variable for Next.js
-ARG NEXT_PUBLIC_API_URL=/api
-ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
-
-# Copy frontend package files
-COPY frontend/package*.json ./
-
-# Install ALL dependencies (including devDependencies needed for build)
-RUN npm ci
-
-# Copy frontend source
-COPY frontend/ ./
-
-# Build Next.js for production
-RUN npm run build
-
-# Stage 2: Python Backend with Frontend
 FROM python:3.10-slim
 
 WORKDIR /app
@@ -43,10 +21,6 @@ COPY backend/routes/ ./routes/
 
 # Copy database module
 COPY database/ ./database/
-
-# Copy built frontend from frontend-builder stage
-# Next.js export creates an 'out' directory with static HTML files
-COPY --from=frontend-builder /frontend/out ./public
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
