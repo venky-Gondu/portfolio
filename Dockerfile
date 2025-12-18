@@ -47,9 +47,8 @@ COPY backend/create_venky_admin.py ./
 COPY database/ ./database/
 
 # Copy built frontend from frontend-builder stage
-COPY --from=frontend-builder /frontend/.next/standalone ./frontend/
-COPY --from=frontend-builder /frontend/.next/static ./frontend/.next/static
-COPY --from=frontend-builder /frontend/public ./frontend/public
+# Next.js export creates an 'out' directory with static HTML files
+COPY --from=frontend-builder /frontend/out ./public
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1

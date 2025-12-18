@@ -39,27 +39,40 @@ app.register_blueprint(visitor_bp)
 @app.route('/')
 @app.route('/<path:path>')
 def serve_frontend(path=''):
-    """Serve Next.js frontend for all non-API routes"""
-    # Check if it's an API route
-    if path.startswith('api/'):
+    """Serve Next.js static export for all non-API routes"""
+    # Check if it's an API route or health check
+    if path.startswith('api/') or path == 'health':
         return jsonify({
             'success': False,
-            'error': 'API endpoint not found'
+            'error': 'Endpoint not found'
         }), 404
     
-    # Serve static files
-    frontend_path = os.path.join(os.path.dirname(__file__), 'frontend')
+    # Serve static files from public directory (Next.js export output)
+    public_path = os.path.join(os.path.dirname(__file__), 'public')
+    
+    # If no path, serve index.html
+    if not path:
+        index_file = os.path.join(public_path, 'index.html')
+        if os.path.exists(index_file):
+            return send_file(index_file)
     
     # Try to serve the requested file
-    if path and os.path.exists(os.path.join(frontend_path, 'public', path)):
-        return send_from_directory(os.path.join(frontend_path, 'public'), path)
+    file_path = os.path.join(public_path, path)
+    if os.path.exists(file_path):
+        if os.path.isfile(file_path):
+            return send_file(file_path)
     
-    # Default to index.html for client-side routing
-    index_path = os.path.join(frontend_path, 'public', 'index.html')
+    # For Next.js routes, try to serve the HTML file
+    html_path = os.path.join(public_path, path + '.html')
+    if os.path.exists(html_path):
+        return send_file(html_path)
+    
+    # Try path/index.html for directory routes
+    index_path = os.path.join(public_path, path, 'index.html')
     if os.path.exists(index_path):
         return send_file(index_path)
     
-    # Fallback: return a simple message if frontend not built
+    # Fallback: return API info if frontend not built
     return jsonify({
         'message': 'Portfolio Application',
         'note': 'Frontend not found. Build Next.js first.',
