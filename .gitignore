@@ -3,6 +3,8 @@ test_database.json
 *.pyc
 __pycache__/
 .env
+.env.local
+*.env.local
 
 # Node modules
 node_modules/
