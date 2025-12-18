@@ -3,14 +3,21 @@ from flask_cors import CORS
 import sys
 import os
 
-# Add parent directory to path
+# Add parent directory to path for local development
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from backend.routes.contact import contact_bp
-from backend.routes.admin import admin_bp
-from backend.routes.visitor import visitor_bp
+# Import routes - works both locally (backend.routes) and in Docker (routes)
+try:
+    from backend.routes.contact import contact_bp
+    from backend.routes.admin import admin_bp
+    from backend.routes.visitor import visitor_bp
+except ModuleNotFoundError:
+    # Running in Docker where files are in /app directly
+    from routes.contact import contact_bp
+    from routes.admin import admin_bp
+    from routes.visitor import visitor_bp
+
 from database.connection import db_connection
-import os
 from dotenv import load_dotenv
 
 # Load environment variables
