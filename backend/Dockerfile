@@ -11,18 +11,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy and install Python dependencies
-COPY requirements.txt ./
+COPY backend/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy backend application code
-COPY app.py ./
-COPY middleware/ ./middleware/
-COPY routes/ ./routes/
-COPY create_test_admin.py ./
-COPY create_venky_admin.py ./
+COPY backend/app.py ./
+COPY backend/middleware/ ./middleware/
+COPY backend/routes/ ./routes/
 
-# Copy database module from parent directory
-COPY ../database/ ./database/
+# Copy database module
+COPY database/ ./database/
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
