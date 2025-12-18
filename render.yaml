@@ -1,9 +1,9 @@
 services:
-  # Unified Service - Backend + Frontend
+  # Backend API Service
   - type: web
-    name: portfolio
+    name: portfolio-api
     env: docker
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: ./backend/Dockerfile
     dockerContext: ./
     plan: free
     envVars:
@@ -19,3 +19,5 @@ services:
         value: production
       - key: PORT
         value: 5000
+      - key: FRONTEND_URL
+        sync: false  # Set this to your Vercel URL after deployment

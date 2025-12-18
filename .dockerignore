@@ -1,0 +1,51 @@
+# Node modules
+frontend/node_modules
+frontend/.next
+frontend/out
+
+# Python
+backend/__pycache__
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+backend/.Python
+backend/env
+backend/venv
+backend/.venv
+
+# Environment files
+.env
+.env.local
+backend/.env
+frontend/.env.local
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation
+README.md
+CREDENTIALS.md
+
+# Scripts
+*.ps1
+start.ps1
+restart-frontend.ps1
+
+# Database test files
+database/test_db.py
+backend/create_test_admin.py
+backend/create_venky_admin.py
+
+# Docker
+docker-compose.yml

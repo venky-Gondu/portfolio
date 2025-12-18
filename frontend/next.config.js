@@ -1,14 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
-    output: 'export',  // Generate static HTML files
     // Configure API URL from environment variable
     env: {
         NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || '/api',
     },
-    // Disable image optimization for static export
+    // Enable image optimization for Vercel
     images: {
-        unoptimized: true,
+        unoptimized: false,
+        domains: [], // Add external image domains here if needed
     },
 }
 
