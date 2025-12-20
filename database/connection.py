@@ -11,8 +11,8 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Check if we should use test database
-USE_TEST_DB = os.getenv('USE_TEST_DB', 'true').lower() == 'true'
+# Check if we should use test database (default: false for production)
+USE_TEST_DB = os.getenv('USE_TEST_DB', 'false').lower() == 'true'
 
 class DatabaseConnection:
     """MongoDB connection manager with test database fallback"""
