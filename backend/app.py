@@ -30,14 +30,23 @@ app = Flask(__name__)
 
 # CORS configuration - allow requests from Vercel frontend
 frontend_url = os.getenv('FRONTEND_URL', 'http://localhost:3000')
-CORS(app, resources={
-    r"/api/*": {
-        "origins": [frontend_url, "http://localhost:3000", "https://*.vercel.app"],
-        "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"],
-        "supports_credentials": True
-    }
-})
+
+# Remove trailing slash if present
+if frontend_url.endswith('/'):
+    frontend_url = frontend_url[:-1]
+
+# Allow both localhost and production frontend
+allowed_origins = [
+    frontend_url,
+    "http://localhost:3000",
+    "https://portfolio-56fn.vercel.app"  # Your specific Vercel domain
+]
+
+CORS(app, 
+     resources={r"/api/*": {"origins": allowed_origins}},
+     methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+     allow_headers=["Content-Type", "Authorization"],
+     supports_credentials=True)
 
 # Register blueprints
 app.register_blueprint(contact_bp)
