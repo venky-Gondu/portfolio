@@ -9,7 +9,7 @@ admin_bp = Blueprint('admin', __name__)
 def login():
     """Admin login endpoint"""
     try:
-        data = request.get_json()
+        data = request.get_json(force=True, silent=True)
         if not data:
             return jsonify({
                 'success': False,

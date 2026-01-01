@@ -7,7 +7,12 @@ contact_bp = Blueprint('contact', __name__)
 def submit_contact():
     """Submit contact form"""
     try:
-        data = request.get_json()
+        data = request.get_json(force=True, silent=True)
+        if not data:
+            return jsonify({
+                'success': False,
+                'error': 'No data provided'
+            }), 400
         
         # Extract form data
         name = data.get('name')

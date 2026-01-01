@@ -7,7 +7,7 @@ visitor_bp = Blueprint('visitor', __name__)
 def track_visitor():
     """Track visitor activity"""
     try:
-        data = request.get_json() or {}
+        data = request.get_json(force=True, silent=True) or {}
         
         # Get visitor info
         ip_address = request.remote_addr
