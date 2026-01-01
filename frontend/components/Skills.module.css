@@ -53,9 +53,9 @@
 }
 
 .skillIcon {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,6 +64,11 @@
     color: white;
     transition: transform 0.3s ease;
     flex-shrink: 0;
+}
+
+.skillIcon svg {
+    width: 24px;
+    height: 24px;
 }
 
 .skillCard:hover .skillIcon {

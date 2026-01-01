@@ -6,7 +6,7 @@ import styles from './Hero.module.css';
 
 export default function Hero() {
     const [text, setText] = useState('');
-    const fullText = 'Full-Stack Developer & AI/ML Enthusiast';
+    const fullText = 'Backend Developer & AI/ML Enthusiast';
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
