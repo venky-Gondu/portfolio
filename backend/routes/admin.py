@@ -10,6 +10,12 @@ def login():
     """Admin login endpoint"""
     try:
         data = request.get_json()
+        if not data:
+            return jsonify({
+                'success': False,
+                'error': 'No data provided. Ensure Content-Type is application/json'
+            }), 400
+            
         email = data.get('email')
         password = data.get('password')
         
@@ -20,7 +26,14 @@ def login():
             }), 400
         
         # Authenticate admin
-        admin = Admin.authenticate(email, password)
+        try:
+            admin = Admin.authenticate(email, password)
+        except Exception as auth_err:
+            print(f"Auth error: {str(auth_err)}")
+            return jsonify({
+                'success': False,
+                'error': f'Authentication error: {str(auth_err)}'
+            }), 500
         
         if not admin:
             return jsonify({
@@ -29,7 +42,17 @@ def login():
             }), 401
         
         # Generate JWT token
-        token = generate_token(admin['_id'], admin['email'])
+        try:
+            token = generate_token(admin['_id'], admin['email'])
+            # Ensure token is string (PyJWT 2.x returns string, but let's be safe)
+            if isinstance(token, bytes):
+                token = token.decode('utf-8')
+        except Exception as jwt_err:
+            print(f"JWT error: {str(jwt_err)}")
+            return jsonify({
+                'success': False,
+                'error': f'Token generation error: {str(jwt_err)}'
+            }), 500
         
         return jsonify({
             'success': True,
@@ -43,9 +66,12 @@ def login():
         }), 200
         
     except Exception as e:
+        import traceback
+        error_trace = traceback.format_exc()
+        print(f"Login exception: {error_trace}")
         return jsonify({
             'success': False,
-            'error': 'An error occurred during login'
+            'error': f'An unexpected error occurred: {str(e)}'
         }), 500
 
 @admin_bp.route('/api/admin/contacts', methods=['GET'])
