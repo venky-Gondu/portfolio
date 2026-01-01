@@ -64,24 +64,24 @@ export default function Contact() {
                     <div className={styles.contactInfo}>
                         <h3 className={styles.infoTitle}>Let's Work Together</h3>
                         <p className={styles.infoText}>
-                            I'm actively seeking opportunities in Full-Stack Development and AI/ML.
+                            I'm actively seeking opportunities in Backend Development and AI/ML.
                             Feel free to reach out if you'd like to discuss potential collaborations or job opportunities!
                         </p>
 
                         <div className={styles.contactItems}>
-                            <a href="mailto:venkatalagondu@gmail.com" className={styles.contactItem}>
+                            <a href="mailto:gvenkatesh10082003@gmail.com" className={styles.contactItem}>
                                 <FaEnvelope className={styles.icon} />
                                 <div>
                                     <div className={styles.label}>Email</div>
-                                    <div className={styles.value}>venkatalagondu@gmail.com</div>
+                                    <div className={styles.value}>gvenkatesh10082003@gmail.com</div>
                                 </div>
                             </a>
 
-                            <a href="tel:+919147367184" className={styles.contactItem}>
+                            <a href="tel:+919347367184" className={styles.contactItem}>
                                 <FaPhone className={styles.icon} />
                                 <div>
                                     <div className={styles.label}>Phone</div>
-                                    <div className={styles.value}>+91 91 47 36 71 84</div>
+                                    <div className={styles.value}>+91 93 47 36 71 84</div>
                                 </div>
                             </a>
 
@@ -89,7 +89,7 @@ export default function Contact() {
                                 <FaMapMarkerAlt className={styles.icon} />
                                 <div>
                                     <div className={styles.label}>Location</div>
-                                    <div className={styles.value}>Amaravathi, India</div>
+                                    <div className={styles.value}>Vishakapatanam, Andhra Pradesh</div>
                                 </div>
                             </div>
                         </div>

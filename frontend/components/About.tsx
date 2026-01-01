@@ -12,7 +12,7 @@ export default function About() {
                     <div className={styles.textContent}>
                         <p className={styles.intro}>
                             I'm a <strong>Final Year Postgraduate student</strong> at Vellore Institute of Technology, Amaravathi,
-                            specializing in <strong>Full-Stack Development</strong> and <strong>AI/ML technologies</strong>.
+                            specializing in <strong>Backend Development</strong> and <strong>AI/ML technologies</strong>.
                         </p>
 
                         <p className={styles.description}>

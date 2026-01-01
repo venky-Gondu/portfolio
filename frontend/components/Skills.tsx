@@ -1,47 +1,75 @@
 'use client';
 
+import {
+    FaJava,
+    FaPython,
+    FaDatabase,
+    FaDocker,
+    FaGitAlt,
+    FaLinux,
+    FaTerminal,
+    FaCode
+} from 'react-icons/fa';
+import {
+    SiSpringboot,
+    SiFlask,
+    SiFastapi,
+    SiPostgresql,
+    SiMongodb,
+    SiRedis,
+    SiTensorflow,
+    SiPytorch,
+    SiPandas,
+    SiNumpy,
+    SiScikitlearn,
+    SiPostman,
+    SiGithub
+} from 'react-icons/si';
 import styles from './Skills.module.css';
 
 const skillCategories = [
     {
-        title: 'Programming Languages',
+        title: 'Programming & Data Structures',
         skills: [
-            { name: 'Java', color: '#007396' },
-            { name: 'Python', color: '#3776AB' },
-            { name: 'JavaScript', color: '#F7DF1E' },
-            { name: 'TypeScript', color: '#3178C6' },
+            { name: 'Java', color: '#007396', icon: <FaJava /> },
+            { name: 'Python', color: '#3776AB', icon: <FaPython /> },
+            { name: 'DSA', color: '#FFD700', icon: <FaTerminal /> },
         ]
     },
     {
-        title: 'Backend',
+        title: 'Backend Development',
         skills: [
-            { name: 'Spring Boot', color: '#6DB33F' },
-            { name: 'Flask', color: '#000000' },
-            { name: 'FastAPI', color: '#009688' },
+            { name: 'Spring Boot', color: '#6DB33F', icon: <SiSpringboot /> },
+            { name: 'Flask', color: '#000000', icon: <SiFlask /> },
+            { name: 'FastAPI', color: '#009688', icon: <SiFastapi /> },
         ]
     },
     {
-        title: 'Frontend',
+        title: 'ML Libraries',
         skills: [
-            { name: 'React', color: '#61DAFB' },
-            { name: 'Next.js', color: '#000000' },
-            { name: 'Tailwind CSS', color: '#06B6D4' },
+            { name: 'Pandas', color: '#150458', icon: <SiPandas /> },
+            { name: 'NumPy', color: '#013243', icon: <SiNumpy /> },
+            { name: 'Scikit-Learn', color: '#F7931E', icon: <SiScikitlearn /> },
+            { name: 'PyTorch', color: '#EE4C2C', icon: <SiPytorch /> },
+            { name: 'TensorFlow', color: '#FF6F00', icon: <SiTensorflow /> },
         ]
     },
     {
         title: 'Databases',
         skills: [
-            { name: 'PostgreSQL', color: '#4169E1' },
-            { name: 'MongoDB', color: '#47A248' },
-            { name: 'Redis', color: '#DC382D' },
+            { name: 'PostgreSQL', color: '#4169E1', icon: <SiPostgresql /> },
+            { name: 'MongoDB', color: '#47A248', icon: <SiMongodb /> },
+            { name: 'Redis', color: '#DC382D', icon: <SiRedis /> },
         ]
     },
     {
         title: 'Tools & Technologies',
         skills: [
-            { name: 'Docker', color: '#2496ED' },
-            { name: 'Git', color: '#F05032' },
-            { name: 'TensorFlow', color: '#FF6F00' },
+            { name: 'Git', color: '#F05032', icon: <FaGitAlt /> },
+            { name: 'GitHub', color: '#181717', icon: <SiGithub /> },
+            { name: 'Postman', color: '#FF6C37', icon: <SiPostman /> },
+            { name: 'Docker', color: '#2496ED', icon: <FaDocker /> },
+            { name: 'Linux', color: '#FCC624', icon: <FaLinux /> },
         ]
     }
 ];
@@ -63,7 +91,7 @@ export default function Skills() {
                                             className={styles.skillIcon}
                                             style={{ backgroundColor: skill.color }}
                                         >
-                                            {skill.name.charAt(0)}
+                                            {skill.icon}
                                         </div>
                                         <span className={styles.skillName}>{skill.name}</span>
                                     </div>
