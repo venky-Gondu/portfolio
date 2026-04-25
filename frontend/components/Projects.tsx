@@ -5,6 +5,19 @@ import styles from './Projects.module.css';
 
 const projects = [
     {
+        title: 'Mazdoori – Hyperlocal Agricultural Labor Matching',
+        category: 'Full-Stack',
+        tech: ['React.js', 'FastAPI', 'PostgreSQL', 'JWT', 'Tailwind CSS', 'PWA'],
+        description: 'Hyperlocal platform connecting daily-wage agricultural workers with farm jobs within a strict 5km radius using a custom geospatial matchmaking algorithm.',
+        achievements: [
+            'Built RESTful backend with FastAPI & PostgreSQL; implemented Haversine-based geospatial matching within 5km radius',
+            'Resolved severe N+1 query bottlenecks using batch-fetching, optimizing job-applicant aggregations',
+            'Integrated TextBee SMS API for 100% passwordless auth with stateless JWT sessions and strict 24-hour token expiry',
+            'Developed mobile-first PWA with dual-role dashboards (Farmer/Worker) and visual-first UI to overcome literacy barriers',
+            'Implemented atomic transaction commits preventing 100% of duplicate job submissions and worker schedule overlaps'
+        ]
+    },
+    {
         title: 'Notification & Alerting System',
         category: 'Full-Stack',
         tech: ['Java', 'Spring Boot', 'WebSocket', 'Redis'],

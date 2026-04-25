@@ -1,20 +1,46 @@
-# Deployment files
-test_database.json
-*.pyc
-__pycache__/
+# ── Environment files ──
 .env
 .env.local
 *.env.local
+.env.*
+!.env.example
+!.env.local.example
 
-# Node modules
+# ── Python ──
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# ── Node / Next.js ──
 node_modules/
 .next/
 out/
 
-# IDE
+# ── IDE ──
 .vscode/
 .idea/
 
-# OS
+# ── OS ──
 .DS_Store
 Thumbs.db
+
+# ── Deployment/infra files (keep locally, not in repo) ──
+*.dockerignore
+.vercelignore
+Procfile
+
+# ── Internal docs / credentials (sensitive) ──
+CREDENTIALS.md
+SECURITY_ALERT.md
+CREATE_ADMIN.md
+DEPLOYMENT.md
+VERCEL_CONFIG.md
+
+# ── Test data ──
+test_database.json
+backend/test_database.json

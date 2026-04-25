@@ -36,10 +36,10 @@ if frontend_url.endswith('/'):
     frontend_url = frontend_url[:-1]
 
 # Allow both localhost and production frontend
+# Do NOT add hardcoded URLs here — use FRONTEND_URL env var in your deployment dashboard
 allowed_origins = [
     frontend_url,
     "http://localhost:3000",
-    "https://portfolio-56fn.vercel.app"  # Your specific Vercel domain
 ]
 
 CORS(app, 
