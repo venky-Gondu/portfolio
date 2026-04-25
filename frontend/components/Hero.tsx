@@ -25,9 +25,9 @@ export default function Hero() {
 
     return (
         <section id="home" className={styles.hero}>
-            <div className={styles.background}>
-                <div className={styles.grain}></div>
-            </div>
+            {/* Ambient glow blobs */}
+            <div className={styles.blob1}></div>
+            <div className={styles.blob2}></div>
 
             <div className="container">
                 <div className={styles.content}>
@@ -74,31 +74,103 @@ export default function Hero() {
                     {/* Right — Venn Diagram */}
                     <div className={styles.imageContainer}>
                         <div className={styles.vennWrapper}>
-                            {/* Three overlapping circles */}
+                            {/*
+                             * Venn Diagram: 3 overlapping circles
+                             * Circle centers designed so they overlap ~35%
+                             * Text is INSIDE each circle's private region
+                             * Center intersection = "Engineering"
+                             * No arrow
+                             */}
                             <svg
                                 className={styles.vennSvg}
-                                viewBox="0 0 340 320"
+                                viewBox="0 0 420 400"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
-                                {/* Circle 1 — Creativity (top-left) */}
-                                <circle cx="130" cy="110" r="100" fill="rgba(192,133,82,0.12)" stroke="#C08552" strokeWidth="1.2" />
-                                {/* Circle 2 — Curiosity (top-right) */}
-                                <circle cx="210" cy="110" r="100" fill="rgba(75,46,43,0.35)" stroke="#C08552" strokeWidth="1.2" />
-                                {/* Circle 3 — Experimentation (bottom-center) */}
-                                <circle cx="170" cy="190" r="100" fill="rgba(192,133,82,0.08)" stroke="#C08552" strokeWidth="1.2" />
+                                {/* ── Circles ── */}
+                                {/* Circle 1  — Creativity — top-left — orange tint */}
+                                <circle
+                                    cx="155" cy="150" r="130"
+                                    fill="rgba(255,101,63,0.13)"
+                                    stroke="#FF653F" strokeWidth="1.4"
+                                />
+                                {/* Circle 2  — Curiosity — top-right — gold tint */}
+                                <circle
+                                    cx="265" cy="150" r="130"
+                                    fill="rgba(255,200,92,0.10)"
+                                    stroke="#FFC85C" strokeWidth="1.4"
+                                />
+                                {/* Circle 3  — Experimentation — bottom-center — purple tint */}
+                                <circle
+                                    cx="210" cy="238" r="130"
+                                    fill="rgba(69,46,90,0.55)"
+                                    stroke="#9b7fc0" strokeWidth="1.4"
+                                />
 
-                                {/* Labels outside intersection */}
-                                <text x="80" y="80" textAnchor="middle" fill="#FFF8F0" fontSize="11" fontFamily="Space Grotesk" fontWeight="500">Creativity</text>
-                                <text x="260" y="80" textAnchor="middle" fill="#FFF8F0" fontSize="11" fontFamily="Space Grotesk" fontWeight="500">Curiosity</text>
-                                <text x="170" y="275" textAnchor="middle" fill="#FFF8F0" fontSize="11" fontFamily="Space Grotesk" fontWeight="500">Experimentation</text>
+                                {/* ── Labels INSIDE each circle's private region ── */}
 
-                                {/* Center intersection label */}
-                                <text x="170" y="152" textAnchor="middle" fill="#C08552" fontSize="13" fontFamily="Playfair Display" fontWeight="600">Engineering</text>
+                                {/* Creativity — upper-left private area */}
+                                <text
+                                    x="100" y="92"
+                                    textAnchor="middle"
+                                    fill="#FF653F"
+                                    fontSize="13"
+                                    fontFamily="Space Grotesk, sans-serif"
+                                    fontWeight="600"
+                                    letterSpacing="0.5"
+                                >
+                                    Creativity
+                                </text>
 
-                                {/* Arrow pointing right */}
-                                <line x1="288" y1="152" x2="328" y2="152" stroke="#C08552" strokeWidth="1.5" strokeLinecap="round" />
-                                <polyline points="320,144 330,152 320,160" fill="none" stroke="#C08552" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                {/* Curiosity — upper-right private area */}
+                                <text
+                                    x="320" y="92"
+                                    textAnchor="middle"
+                                    fill="#FFC85C"
+                                    fontSize="13"
+                                    fontFamily="Space Grotesk, sans-serif"
+                                    fontWeight="600"
+                                    letterSpacing="0.5"
+                                >
+                                    Curiosity
+                                </text>
+
+                                {/* Experimentation — bottom private area (split into 2 lines) */}
+                                <text
+                                    x="210" y="352"
+                                    textAnchor="middle"
+                                    fill="rgba(200,180,255,0.85)"
+                                    fontSize="11"
+                                    fontFamily="Space Grotesk, sans-serif"
+                                    fontWeight="600"
+                                    letterSpacing="0.5"
+                                >
+                                    Experi-
+                                </text>
+                                <text
+                                    x="210" y="368"
+                                    textAnchor="middle"
+                                    fill="rgba(200,180,255,0.85)"
+                                    fontSize="11"
+                                    fontFamily="Space Grotesk, sans-serif"
+                                    fontWeight="600"
+                                    letterSpacing="0.5"
+                                >
+                                    mentation
+                                </text>
+
+                                {/* ── Center intersection — Engineering ── */}
+                                <text
+                                    x="210" y="195"
+                                    textAnchor="middle"
+                                    fill="#ffffff"
+                                    fontSize="15"
+                                    fontFamily="Playfair Display, serif"
+                                    fontWeight="600"
+                                    letterSpacing="0.3"
+                                >
+                                    Engineering
+                                </text>
                             </svg>
 
                             <p className={styles.vennCaption}>Where ideas meet execution</p>
