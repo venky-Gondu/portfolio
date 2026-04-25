@@ -13,30 +13,42 @@ import './globals.css';
 
 export default function Home() {
     useEffect(() => {
-        // Track visitor on page load
-        visitorAPI.track({ page: '/', referrer: document.referrer }).catch(err => {
-            console.log('Visitor tracking failed:', err);
-        });
+        visitorAPI.track({ page: '/', referrer: document.referrer }).catch(() => {});
     }, []);
 
     return (
         <>
             <Navbar />
             <main>
+                {/* Alternating background sections for visual rhythm */}
                 <Hero />
-                <About />
-                <Skills />
-                <Projects />
-                <Education />
-                <Contact />
+                <div style={{ background: 'var(--bg-dark)' }}>
+                    <About />
+                </div>
+                <div style={{ background: 'var(--bg-darker)' }}>
+                    <Skills />
+                </div>
+                <div style={{ background: 'var(--bg-dark)' }}>
+                    <Projects />
+                </div>
+                <div style={{ background: 'var(--bg-darker)' }}>
+                    <Education />
+                </div>
+                <div style={{ background: 'var(--bg-dark)' }}>
+                    <Contact />
+                </div>
             </main>
             <footer style={{
                 textAlign: 'center',
                 padding: '2rem',
                 background: 'var(--bg-darker)',
-                color: 'var(--text-muted)'
+                borderTop: '1px solid rgba(192,133,82,0.1)',
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: '0.8rem',
+                color: 'var(--text-muted)',
+                letterSpacing: '0.04em'
             }}>
-                <p>© 2025 Venkatesh Gondu. All rights reserved.</p>
+                © 2025 Venkatesh Gondu — gvenkatesh10082003@gmail.com
             </footer>
         </>
     );

@@ -1,70 +1,151 @@
 .content {
-    max-width: 900px;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 4rem;
+    align-items: center;
 }
 
-.textContent {
+/* ── Text Block ── */
+.textBlock {
     animation: fadeIn 0.8s ease-out;
 }
 
 .intro {
-    font-size: 1.3rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
     line-height: 1.8;
+    color: var(--cream);
     margin-bottom: 1.5rem;
-    color: var(--text-primary);
+    font-weight: 400;
 }
 
-.description {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-}
-
-.description strong {
-    color: var(--accent);
+.intro strong {
+    color: var(--copper);
     font-weight: 600;
 }
 
-.stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
+.body {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+}
+
+.body strong {
+    color: var(--cream);
+    font-weight: 500;
+}
+
+/* ── Contact Row ── */
+.contactRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+.contactChip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.9rem;
+    background: var(--bg-card);
+    border: 1px solid rgba(192,133,82,0.18);
+    border-radius: var(--radius-sm);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.contactChip:hover {
+    border-color: var(--copper);
+    color: var(--cream);
+    background: var(--bg-card-hover);
+}
+
+.chipIcon {
+    font-size: 0.85rem;
+}
+
+/* ── Stats Column ── */
+.statsCol {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
 }
 
 .statCard {
-    text-align: center;
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
     background: var(--bg-card);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(192,133,82,0.08);
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.statCard::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--copper);
+    border-radius: 2px 0 0 2px;
 }
 
 .statCard:hover {
-    transform: translateY(-10px);
-    border-color: var(--accent);
-    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+    border-color: rgba(192,133,82,0.3);
+    transform: translateX(6px);
+    background: var(--bg-card-hover);
 }
 
-.statCard h3 {
-    font-size: 3rem;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 0.5rem;
+.statNumber {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--copper);
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0.4rem;
 }
 
-.statCard p {
-    color: var(--text-secondary);
-    font-size: 1.1rem;
+.statLabel {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
 }
 
-@media (max-width: 768px) {
-    .stats {
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .content {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 2.5rem;
     }
+
+    .statsCol {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .statCard {
+        flex: 1;
+        min-width: 140px;
+    }
+
+    .statCard:hover { transform: translateY(-4px); }
+}
+
+@media (max-width: 600px) {
+    .contactRow { flex-direction: column; }
+    .statsCol { flex-direction: column; }
 }
