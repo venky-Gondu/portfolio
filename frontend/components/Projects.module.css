@@ -50,7 +50,7 @@
     grid-template-columns: 0.8fr 1.2fr;
     background: var(--bg-card);
     border-radius: var(--radius-lg);
-    border: 1px solid rgba(230,240,130,0.15);
+    border: 1px solid rgba(254,127,45,0.15);
     overflow: hidden;
     margin-bottom: 3rem;
     transition: all 0.3s ease;
@@ -58,7 +58,7 @@
 
 .featuredCard:hover {
     box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-    border-color: rgba(230,240,130,0.3);
+    border-color: rgba(254,127,45,0.3);
 }
 
 .featuredLeft {

@@ -92,9 +92,9 @@ const projects = [
 
 /* Category → color mapping — easy to extend */
 const categoryColor: Record<string, string> = {
-    'Full-Stack': '#E6F082',
-    'Backend':    '#D8D365',
-    'AI/ML':      '#dcdcdc',
+    'Full-Stack': '#FE7F2D',
+    'Backend':    '#49BBBF',
+    'AI/ML':      '#F5FBE6',
 };
 
 export default function Projects() {
@@ -128,7 +128,6 @@ export default function Projects() {
                         ))}
                     </div>
                 </div>
-                <div className={styles.titleUnderline}></div>
 
                 {/* ── Featured Card (always Mazdoori / index 0) ── */}
                 <div className={styles.featuredCard}>
@@ -140,7 +139,7 @@ export default function Projects() {
                         >
                             {featured.category}
                         </span>
-                        <div className={styles.featuredTech}>
+                        <div className={styles.tech}>
                             {featured.tech.map((t, i) => (
                                 <span key={i} className={styles.techTag}>{t}</span>
                             ))}

@@ -7,7 +7,7 @@ const education = [
         degree: 'M.Tech – Integrated',
         institution: 'VIT Amaravathi',
         period: '2021 – Present',
-        cgpa: '8.93',
+        cgpa: '8.50',
         description: 'Specializing in Software Engineering and Full-Stack Development',
         board: 'VIT University'
     },

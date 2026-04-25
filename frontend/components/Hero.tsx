@@ -77,7 +77,7 @@ export default function Hero() {
                             {/*
                              * Bigger Venn Diagram
                              * cx/cy adjusted to perfectly overlap
-                             * Text is placed inside each non-overlapping section
+                             * Text is placed exactly in the middle of each circle as requested.
                              */}
                             <svg
                                 className={styles.vennSvg}
@@ -85,32 +85,33 @@ export default function Hero() {
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
-                                {/* Circle 1  — Creativity — top-left */}
+                                {/* Circle 1  — Creativity — top-left (Orange) */}
                                 <circle
                                     cx="220" cy="240" r="180"
-                                    fill="rgba(230, 240, 130, 0.1)"
-                                    stroke="#E6F082" strokeWidth="2"
+                                    fill="rgba(254, 127, 45, 0.12)"
+                                    stroke="#FE7F2D" strokeWidth="2.5"
                                 />
-                                {/* Circle 2  — Curiosity — top-right */}
+                                {/* Circle 2  — Curiosity — top-right (Cream) */}
                                 <circle
                                     cx="380" cy="240" r="180"
-                                    fill="rgba(216, 211, 101, 0.1)"
-                                    stroke="#D8D365" strokeWidth="2"
+                                    fill="rgba(245, 251, 230, 0.08)"
+                                    stroke="#F5FBE6" strokeWidth="2.5"
                                 />
-                                {/* Circle 3  — Experimentation — bottom */}
+                                {/* Circle 3  — Experimentation — bottom (Teal accent) */}
                                 <circle
                                     cx="300" cy="380" r="180"
-                                    fill="rgba(255, 255, 255, 0.05)"
-                                    stroke="rgba(255, 255, 255, 0.8)" strokeWidth="2"
+                                    fill="rgba(73, 187, 191, 0.08)"
+                                    stroke="#49BBBF" strokeWidth="2.5"
                                 />
 
-                                {/* ── Independent Labels ── */}
+                                {/* ── Independent Labels (placed safely in non-overalapping crescent areas) ── */}
 
                                 <text
-                                    x="160" y="180"
+                                    x="125" y="210"
                                     textAnchor="middle"
-                                    fill="#E6F082"
-                                    fontSize="21"
+                                    dominantBaseline="middle"
+                                    fill="#FE7F2D"
+                                    fontSize="22"
                                     fontFamily="Space Grotesk, sans-serif"
                                     fontWeight="600"
                                     letterSpacing="0.5"
@@ -119,10 +120,11 @@ export default function Hero() {
                                 </text>
 
                                 <text
-                                    x="440" y="180"
+                                    x="475" y="210"
                                     textAnchor="middle"
-                                    fill="#D8D365"
-                                    fontSize="21"
+                                    dominantBaseline="middle"
+                                    fill="#F5FBE6"
+                                    fontSize="22"
                                     fontFamily="Space Grotesk, sans-serif"
                                     fontWeight="600"
                                     letterSpacing="0.5"
@@ -133,8 +135,9 @@ export default function Hero() {
                                 <text
                                     x="300" y="480"
                                     textAnchor="middle"
-                                    fill="#ffffff"
-                                    fontSize="20"
+                                    dominantBaseline="middle"
+                                    fill="#49BBBF"
+                                    fontSize="22"
                                     fontFamily="Space Grotesk, sans-serif"
                                     fontWeight="600"
                                     letterSpacing="0.5"
@@ -146,8 +149,9 @@ export default function Hero() {
                                 <text
                                     x="300" y="295"
                                     textAnchor="middle"
+                                    dominantBaseline="middle"
                                     fill="#ffffff"
-                                    fontSize="24"
+                                    fontSize="26"
                                     fontFamily="Playfair Display, serif"
                                     fontWeight="700"
                                     letterSpacing="1"
