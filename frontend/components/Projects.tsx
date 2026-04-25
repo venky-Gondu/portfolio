@@ -92,9 +92,9 @@ const projects = [
 
 /* Category → color mapping — easy to extend */
 const categoryColor: Record<string, string> = {
-    'Full-Stack': '#FF653F',
-    'Backend':    '#FFC85C',
-    'AI/ML':      '#c084fc',
+    'Full-Stack': '#E6F082',
+    'Backend':    '#D8D365',
+    'AI/ML':      '#dcdcdc',
 };
 
 export default function Projects() {

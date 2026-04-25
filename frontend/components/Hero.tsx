@@ -75,46 +75,42 @@ export default function Hero() {
                     <div className={styles.imageContainer}>
                         <div className={styles.vennWrapper}>
                             {/*
-                             * Venn Diagram: 3 overlapping circles
-                             * Circle centers designed so they overlap ~35%
-                             * Text is INSIDE each circle's private region
-                             * Center intersection = "Engineering"
-                             * No arrow
+                             * Bigger Venn Diagram
+                             * cx/cy adjusted to perfectly overlap
+                             * Text is placed inside each non-overlapping section
                              */}
                             <svg
                                 className={styles.vennSvg}
-                                viewBox="0 0 420 400"
+                                viewBox="0 0 600 600"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
-                                {/* ── Circles ── */}
-                                {/* Circle 1  — Creativity — top-left — orange tint */}
+                                {/* Circle 1  — Creativity — top-left */}
                                 <circle
-                                    cx="155" cy="150" r="130"
-                                    fill="rgba(255,101,63,0.13)"
-                                    stroke="#FF653F" strokeWidth="1.4"
+                                    cx="220" cy="240" r="180"
+                                    fill="rgba(230, 240, 130, 0.1)"
+                                    stroke="#E6F082" strokeWidth="2"
                                 />
-                                {/* Circle 2  — Curiosity — top-right — gold tint */}
+                                {/* Circle 2  — Curiosity — top-right */}
                                 <circle
-                                    cx="265" cy="150" r="130"
-                                    fill="rgba(255,200,92,0.10)"
-                                    stroke="#FFC85C" strokeWidth="1.4"
+                                    cx="380" cy="240" r="180"
+                                    fill="rgba(216, 211, 101, 0.1)"
+                                    stroke="#D8D365" strokeWidth="2"
                                 />
-                                {/* Circle 3  — Experimentation — bottom-center — purple tint */}
+                                {/* Circle 3  — Experimentation — bottom */}
                                 <circle
-                                    cx="210" cy="238" r="130"
-                                    fill="rgba(69,46,90,0.55)"
-                                    stroke="#9b7fc0" strokeWidth="1.4"
+                                    cx="300" cy="380" r="180"
+                                    fill="rgba(255, 255, 255, 0.05)"
+                                    stroke="rgba(255, 255, 255, 0.8)" strokeWidth="2"
                                 />
 
-                                {/* ── Labels INSIDE each circle's private region ── */}
+                                {/* ── Independent Labels ── */}
 
-                                {/* Creativity — upper-left private area */}
                                 <text
-                                    x="100" y="92"
+                                    x="160" y="180"
                                     textAnchor="middle"
-                                    fill="#FF653F"
-                                    fontSize="13"
+                                    fill="#E6F082"
+                                    fontSize="21"
                                     fontFamily="Space Grotesk, sans-serif"
                                     fontWeight="600"
                                     letterSpacing="0.5"
@@ -122,12 +118,11 @@ export default function Hero() {
                                     Creativity
                                 </text>
 
-                                {/* Curiosity — upper-right private area */}
                                 <text
-                                    x="320" y="92"
+                                    x="440" y="180"
                                     textAnchor="middle"
-                                    fill="#FFC85C"
-                                    fontSize="13"
+                                    fill="#D8D365"
+                                    fontSize="21"
                                     fontFamily="Space Grotesk, sans-serif"
                                     fontWeight="600"
                                     letterSpacing="0.5"
@@ -135,39 +130,27 @@ export default function Hero() {
                                     Curiosity
                                 </text>
 
-                                {/* Experimentation — bottom private area (split into 2 lines) */}
                                 <text
-                                    x="210" y="352"
+                                    x="300" y="480"
                                     textAnchor="middle"
-                                    fill="rgba(200,180,255,0.85)"
-                                    fontSize="11"
+                                    fill="#ffffff"
+                                    fontSize="20"
                                     fontFamily="Space Grotesk, sans-serif"
                                     fontWeight="600"
                                     letterSpacing="0.5"
                                 >
-                                    Experi-
-                                </text>
-                                <text
-                                    x="210" y="368"
-                                    textAnchor="middle"
-                                    fill="rgba(200,180,255,0.85)"
-                                    fontSize="11"
-                                    fontFamily="Space Grotesk, sans-serif"
-                                    fontWeight="600"
-                                    letterSpacing="0.5"
-                                >
-                                    mentation
+                                    Experimentation
                                 </text>
 
                                 {/* ── Center intersection — Engineering ── */}
                                 <text
-                                    x="210" y="195"
+                                    x="300" y="295"
                                     textAnchor="middle"
                                     fill="#ffffff"
-                                    fontSize="15"
+                                    fontSize="24"
                                     fontFamily="Playfair Display, serif"
-                                    fontWeight="600"
-                                    letterSpacing="0.3"
+                                    fontWeight="700"
+                                    letterSpacing="1"
                                 >
                                     Engineering
                                 </text>
